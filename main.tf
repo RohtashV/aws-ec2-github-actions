@@ -39,3 +39,21 @@ resource "aws_security_group" "web" {
   }
 
 }
+
+resource "aws_instance" "server" {
+
+  ami = var.ami
+
+  instance_type = var.instance_type
+
+  security_groups = [
+    aws_security_group.web.name
+  ]
+
+  tags = {
+
+    Name = "GitHubActionEC2"
+
+  }
+
+}
